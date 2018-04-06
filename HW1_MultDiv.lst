@@ -1,0 +1,27 @@
+     Assembly listing for: HW1_MultDiv.mas
+                Assembled: Thu Apr 05 17:51:51 PDT 2018
+
+         |                          
+000 5000 |         INPUT             
+001 2006 |         STORE x           
+002 5000 |         INPUT             
+003 2007 |         STORE y           
+004 C008 |         JUMPI mult        
+005 7000 |         HALT              
+         |                          	
+006 0000 |  x      DEC 0             
+007 0000 |  y      DEC 0             
+008 1006 |  mult   LOAD x            
+
+Assembly successful.
+
+         SYMBOL TABLE
+         --------------------------------------------------
+          Symbol | Defined | References 
+         --------+---------+-------------------------------
+          mult   |   008   | 004
+          x      |   006   | 001, 008
+          y      |   007   | 003
+         --------------------------------------------------
+
+

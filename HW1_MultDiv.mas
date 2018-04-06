@@ -1,0 +1,11 @@
+
+	input x
+	store x
+	input y 
+	store y
+	JumpI mult
+	halt
+	
+	x,	dec 0
+	y,	dec 0
+	mult,	load x
