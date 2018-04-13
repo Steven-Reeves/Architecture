@@ -1,11 +1,55 @@
+// Steven Reeves
+// Homework 1
+// CST 131
 
-	input x
-	store x
-	input y 
-	store y
-	JumpI mult
-	halt
+		input x
+		store x
+		input y 
+		store y
+		JnS mult
+		JnS div
+		load prod
+		output
+		load quot
+		output
+		load rem
+		output
+		halt
 	
-	x,	dec 0
-	y,	dec 0
-	mult,	load x
+x,		dec 0
+y,		dec 0
+prod,	dec 0
+temp,	dec 0
+quot,	dec 0
+rem,	dec 0
+ONE, 	dec 1		
+mult,	hex 0			// Store return address here
+		load y
+		store temp
+loop1,	load prod		// Do things here
+		add x
+		store prod
+		load temp
+		subt ONE
+		store temp
+		skipcond 400	// if temp < 0, stop 
+		jump loop1
+		jumpI mult		// Go back
+div,	hex 0			// Store return address here
+		load x
+		store rem
+loop,	load quot
+		add ONE
+		store quot
+		load rem			// Do things here
+		subt y
+		store rem
+		skipcond 000		// if remainder is 0, stop
+		jump loop
+		load quot
+		subt ONE
+		store quot
+		load rem
+		add y
+		store rem
+		jumpI div			// Go back

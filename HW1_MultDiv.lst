@@ -1,17 +1,61 @@
      Assembly listing for: HW1_MultDiv.mas
-                Assembled: Thu Apr 05 17:51:51 PDT 2018
+                Assembled: Thu Apr 12 21:59:06 PDT 2018
 
+         |                          // Steven Reeves
+         |                          // Homework 1
+         |                          // CST 131
          |                          
 000 5000 |         INPUT             
-001 2006 |         STORE x           
+001 200D |         STORE x           
 002 5000 |         INPUT             
-003 2007 |         STORE y           
-004 C008 |         JUMPI mult        
-005 7000 |         HALT              
+003 200E |         STORE y           
+004 0014 |         JNS mult          
+005 0020 |         JNS div           
+006 100F |         LOAD prod         
+007 6000 |         OUTPUT            
+008 1011 |         LOAD quot         
+009 6000 |         OUTPUT            
+00A 1012 |         LOAD rem          
+00B 6000 |         OUTPUT            
+00C 7000 |         HALT              
          |                          	
-006 0000 |  x      DEC 0             
-007 0000 |  y      DEC 0             
-008 1006 |  mult   LOAD x            
+00D 0000 |  x      DEC 0             
+00E 0000 |  y      DEC 0             
+00F 0000 |  prod   DEC 0             
+010 0000 |  temp   DEC 0             
+011 0000 |  quot   DEC 0             
+012 0000 |  rem    DEC 0             
+013 0001 |  ONE    DEC 1             
+014 0000 |  mult   HEX 0            // Store return address here
+015 100E |         LOAD y            
+016 2010 |         STORE temp        
+017 100F |  loop1  LOAD prod        // Do things here
+018 300D |         ADD x             
+019 200F |         STORE prod        
+01A 1010 |         LOAD temp         
+01B 4013 |         SUBT ONE          
+01C 2010 |         STORE temp        
+01D 8400 |         SKIPCOND 400     // if temp < 0, stop 
+01E 9017 |         JUMP loop1        
+01F C014 |         JUMPI mult       // Go back
+020 0000 |  div    HEX 0            // Store return address here
+021 100D |         LOAD x            
+022 2012 |         STORE rem         
+023 1011 |  loop   LOAD quot         
+024 3013 |         ADD ONE           
+025 2011 |         STORE quot        
+026 1012 |         LOAD rem         // Do things here
+027 400E |         SUBT y            
+028 2012 |         STORE rem         
+029 8000 |         SKIPCOND 000     // if remainder is 0, stop
+02A 9023 |         JUMP loop         
+02B 1011 |         LOAD quot         
+02C 4013 |         SUBT ONE          
+02D 2011 |         STORE quot        
+02E 1012 |         LOAD rem          
+02F 300E |         ADD y             
+030 2012 |         STORE rem         
+031 C020 |         JUMPI div        // Go back
 
 Assembly successful.
 
@@ -19,9 +63,17 @@ Assembly successful.
          --------------------------------------------------
           Symbol | Defined | References 
          --------+---------+-------------------------------
-          mult   |   008   | 004
-          x      |   006   | 001, 008
-          y      |   007   | 003
+          ONE    |   013   | 01B, 024, 02C
+          div    |   020   | 005, 031
+          loop   |   023   | 02A
+          loop1  |   017   | 01E
+          mult   |   014   | 004, 01F
+          prod   |   00F   | 006, 017, 019
+          quot   |   011   | 008, 023, 025, 02B, 02D
+          rem    |   012   | 00A, 022, 026, 028, 02E, 030
+          temp   |   010   | 016, 01A, 01C
+          x      |   00D   | 001, 018, 021
+          y      |   00E   | 003, 015, 027, 02F
          --------------------------------------------------
 
 
