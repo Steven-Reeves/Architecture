@@ -1,0 +1,19 @@
+// Steven Reeves
+// Quiz 2
+// CST 131
+
+		input x
+		store x
+		JnS add100
+		load x
+		output
+		halt
+	
+x,		dec 0
+HUND,	dec 100
+
+add100,	hex 0			// Store return address here
+		load x		// Do things here
+		add HUND
+		store x
+		jumpI add100
