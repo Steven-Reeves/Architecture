@@ -34,12 +34,14 @@ loop1,	load prod		// Do things here
 		load temp
 		subt ONE
 		store temp
-		skipcond 400	// if temp < 0, stop 
+		skipcond 400	// if temp = 0, stop 
 		jump loop1
 loop1end, jumpI mult		// Go back
 div,	hex 0			// Store return address here
 		load x
 		store rem
+		skipcond 800	// if rem = 0, stop 
+		jump loopend
 loop,	load quot
 		add ONE
 		store quot
@@ -54,4 +56,4 @@ loop,	load quot
 		load rem
 		add y
 		store rem
-		jumpI div			// Go back
+loopend,	jumpI div			// Go back

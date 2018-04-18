@@ -3,9 +3,10 @@
  ---------+---------
  ONE      |   013
  div      |   022
- loop     |   025
+ loop     |   027
  loop1    |   019
  loop1end |   021
+ loopend  |   035
  mult     |   014
  prod     |   00F
  quot     |   011

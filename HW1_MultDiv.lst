@@ -1,5 +1,5 @@
      Assembly listing for: HW1_MultDiv.mas
-                Assembled: Tue Apr 17 19:17:12 PDT 2018
+                Assembled: Tue Apr 17 19:29:35 PDT 2018
 
          |                              // Steven Reeves
          |                              // Homework 1
@@ -37,27 +37,29 @@
 01C 1010 |           LOAD temp           
 01D 4013 |           SUBT ONE            
 01E 2010 |           STORE temp          
-01F 8400 |           SKIPCOND 400       // if temp < 0, stop 
+01F 8400 |           SKIPCOND 400       // if temp = 0, stop 
 020 9019 |           JUMP loop1          
 021 C014 |  loop1end JUMPI mult         // Go back
 022 0000 |  div      HEX 0              // Store return address here
 023 100D |           LOAD x              
 024 2012 |           STORE rem           
-025 1011 |  loop     LOAD quot           
-026 3013 |           ADD ONE             
-027 2011 |           STORE quot          
-028 1012 |           LOAD rem           // Do things here
-029 400E |           SUBT y              
-02A 2012 |           STORE rem           
-02B 8000 |           SKIPCOND 000       // if remainder is 0, stop
-02C 9025 |           JUMP loop           
-02D 1011 |           LOAD quot           
-02E 4013 |           SUBT ONE            
-02F 2011 |           STORE quot          
-030 1012 |           LOAD rem            
-031 300E |           ADD y               
-032 2012 |           STORE rem           
-033 C022 |           JUMPI div          // Go back
+025 8800 |           SKIPCOND 800       // if rem = 0, stop 
+026 9035 |           JUMP loopend        
+027 1011 |  loop     LOAD quot           
+028 3013 |           ADD ONE             
+029 2011 |           STORE quot          
+02A 1012 |           LOAD rem           // Do things here
+02B 400E |           SUBT y              
+02C 2012 |           STORE rem           
+02D 8000 |           SKIPCOND 000       // if remainder is 0, stop
+02E 9027 |           JUMP loop           
+02F 1011 |           LOAD quot           
+030 4013 |           SUBT ONE            
+031 2011 |           STORE quot          
+032 1012 |           LOAD rem            
+033 300E |           ADD y               
+034 2012 |           STORE rem           
+035 C022 |  loopend  JUMPI div          // Go back
 
 Assembly successful.
 
@@ -65,18 +67,19 @@ Assembly successful.
          ----------------------------------------------------
           Symbol   | Defined | References 
          ----------+---------+-------------------------------
-          ONE      |   013   | 01D, 026, 02E
-          div      |   022   | 005, 033
-          loop     |   025   | 02C
+          ONE      |   013   | 01D, 028, 030
+          div      |   022   | 005, 035
+          loop     |   027   | 02E
           loop1    |   019   | 020
           loop1end |   021   | 018
+          loopend  |   035   | 026
           mult     |   014   | 004, 021
           prod     |   00F   | 006, 019, 01B
-          quot     |   011   | 008, 025, 027, 02D, 02F
-          rem      |   012   | 00A, 024, 028, 02A, 030, 032
+          quot     |   011   | 008, 027, 029, 02F, 031
+          rem      |   012   | 00A, 024, 02A, 02C, 032, 034
           temp     |   010   | 016, 01C, 01E
           x        |   00D   | 001, 01A, 023
-          y        |   00E   | 003, 015, 029, 031
+          y        |   00E   | 003, 015, 02B, 033
          ----------------------------------------------------
 
 
