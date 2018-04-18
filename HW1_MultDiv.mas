@@ -26,6 +26,8 @@ ONE, 	dec 1
 mult,	hex 0			// Store return address here
 		load y
 		store temp
+		skipcond 800	// if temp = 0, stop 
+		jump loop1end
 loop1,	load prod		// Do things here
 		add x
 		store prod
@@ -34,7 +36,7 @@ loop1,	load prod		// Do things here
 		store temp
 		skipcond 400	// if temp < 0, stop 
 		jump loop1
-		jumpI mult		// Go back
+loop1end, jumpI mult		// Go back
 div,	hex 0			// Store return address here
 		load x
 		store rem

@@ -1,15 +1,16 @@
- -----------------
- Symbol | Location
- -------+---------
- ONE    |   013
- div    |   020
- loop   |   023
- loop1  |   017
- mult   |   014
- prod   |   00F
- quot   |   011
- rem    |   012
- temp   |   010
- x      |   00D
- y      |   00E
+ -------------------
+ Symbol   | Location
+ ---------+---------
+ ONE      |   013
+ div      |   022
+ loop     |   025
+ loop1    |   019
+ loop1end |   021
+ mult     |   014
+ prod     |   00F
+ quot     |   011
+ rem      |   012
+ temp     |   010
+ x        |   00D
+ y        |   00E
 
