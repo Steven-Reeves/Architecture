@@ -1,0 +1,52 @@
+// Steven Reeves
+// Homework 2
+// CST 131
+
+		input a
+		store a
+		JnS push		// Push contents of AC on to stack
+		input b
+		store b
+		JnS push		// Push contents of AC on to stack
+		input c
+		store c
+		JnS push		// Push contents of AC on to stack
+		
+		JnS pop			// Pop contents of head into AC
+		output
+		JnS pop			// Pop contents of head into AC		
+		output
+		JnS pop			// Pop contents of head into AC
+		output
+		halt
+		
+push,	hex 0			// Store return address here
+		store temp		// Store contents of AC
+		load BYTES		// Load 16 into AC
+		add head		// Add 16 to head (moving it "down" one)
+		store head		// Store new updated address of head
+		load temp		// Load temp into AC
+		STOREI head		// Store contents of AC at address at head 
+		
+pop,	hex 0			// Store return address here
+		loadi head		// Load contents of address at head into AC
+		store temp		// Store contents of AC in temp
+		load head		// load address at head into AC
+		subt BYTES		// subtract 16 from head address (mobing it "up" one)
+		store head		// Store new updated address of head
+		load temp		// load temp into AC
+		
+temp,	dec 0
+a,		dec 0
+b,		dec 0
+c,		dec 0
+d,		dec 0
+e,		dec 0
+f,		dec 0
+g,		dec 0
+h,		dec 0
+BYTES,	dec 16
+
+head,	hex 029
+
+stack,	dec 0
