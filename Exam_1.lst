@@ -1,0 +1,37 @@
+     Assembly listing for: Exam_1.mas
+                Assembled: Tue Apr 24 19:55:34 PDT 2018
+
+         |                          // Steven Reeves
+         |                          // Exam 1
+         |                          // CST 131
+         |                          
+000 5000 |         INPUT             
+001 2006 |         STORE x           
+002 8000 |         SKIPCOND 000     // Skip if negative
+003 0008 |         JNS out3          
+004 6000 |         OUTPUT            
+005 7000 |         HALT              
+         |                          		
+006 0000 |  x      DEC 0             
+007 0003 |  three  DEC 3             
+         |                          
+         |                          		
+008 0000 |  out3   HEX 0            // Store return address here
+009 1006 |         LOAD x            
+00A 3006 |         ADD x             
+00B 3006 |         ADD x             
+00C 6000 |         OUTPUT            
+00D 7000 |         HALT              
+
+Assembly successful.
+
+         SYMBOL TABLE
+         --------------------------------------------------
+          Symbol | Defined | References 
+         --------+---------+-------------------------------
+          out3   |   008   | 003
+          three  |   007   | 
+          x      |   006   | 001, 009, 00A, 00B
+         --------------------------------------------------
+
+

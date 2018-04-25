@@ -1,0 +1,21 @@
+// Steven Reeves
+// Exam 1
+// CST 131
+
+		input x
+		store x
+		skipcond 000	// Skip if negative
+		Jns out3
+		output
+		halt
+		
+x,		dec 0
+three,	dec 3
+
+		
+out3,	hex 0			// Store return address here
+		load x
+		add x
+		add x
+		output
+		halt
