@@ -1,0 +1,81 @@
+     Assembly listing for: Stack_RPN.mas
+                Assembled: Sat Apr 21 19:10:32 PDT 2018
+
+         |                          // Steven Reeves
+         |                          // Homework 2
+         |                          // CST 131
+         |                          
+000 5000 |         INPUT             
+001 201F |         STORE a           
+002 0010 |         JNS push         // Push contents of AC on to stack
+003 5000 |         INPUT             
+004 2020 |         STORE b           
+005 0010 |         JNS push         // Push contents of AC on to stack
+006 5000 |         INPUT             
+007 2021 |         STORE c           
+008 0010 |         JNS push         // Push contents of AC on to stack
+         |                          		
+009 0017 |         JNS pop          // Pop contents of head into AC
+00A 6000 |         OUTPUT            
+00B 0017 |         JNS pop          // Pop contents of head into AC		
+00C 6000 |         OUTPUT            
+00D 0017 |         JNS pop          // Pop contents of head into AC
+00E 6000 |         OUTPUT            
+00F 7000 |         HALT              
+         |                          		
+010 0000 |  push   HEX 0            // Store return address here
+011 201E |         STORE temp       // Store contents of AC
+012 1027 |         LOAD BYTES       // Load 16 into AC
+013 3028 |         ADD head         // Add 16 to head (moving it "down" one)
+014 2028 |         STORE head       // Store new updated address of head
+015 101E |         LOAD temp        // Load temp into AC
+016 ?028 |         STOREI head      // Store contents of AC at address at head 
+   **** Instruction not recognized.
+         |                          		
+017 0000 |  pop    HEX 0            // Store return address here
+018 ?028 |         LOADI head       // Load contents of address at head into AC
+   **** Instruction not recognized.
+019 201E |         STORE temp       // Store contents of AC in temp
+01A 1028 |         LOAD head        // load address at head into AC
+01B 4027 |         SUBT BYTES       // subtract 16 from head address (mobing it "up" one)
+01C 2028 |         STORE head       // Store new updated address of head
+01D 101E |         LOAD temp        // load temp into AC
+         |                          		
+01E 0000 |  temp   DEC 0             
+01F 0000 |  a      DEC 0             
+020 0000 |  b      DEC 0             
+021 0000 |  c      DEC 0             
+022 0000 |  d      DEC 0             
+023 0000 |  e      DEC 0             
+024 0000 |  f      DEC 0             
+025 0000 |  g      DEC 0             
+026 0000 |  h      DEC 0             
+027 0010 |  BYTES  DEC 16            
+         |                          
+028 0029 |  head   HEX 029           
+         |                          
+029 0000 |  stack  DEC 0             
+
+2 errors found.  Assembly unsuccessful.
+
+         SYMBOL TABLE
+         --------------------------------------------------
+          Symbol | Defined | References 
+         --------+---------+-------------------------------
+          BYTES  |   027   | 012, 01B
+          a      |   01F   | 001
+          b      |   020   | 004
+          c      |   021   | 007
+          d      |   022   | 
+          e      |   023   | 
+          f      |   024   | 
+          g      |   025   | 
+          h      |   026   | 
+          head   |   028   | 013, 014, 016, 018, 01A, 01C
+          pop    |   017   | 009, 00B, 00D
+          push   |   010   | 002, 005, 008
+          stack  |   029   | 
+          temp   |   01E   | 011, 015, 019, 01D
+         --------------------------------------------------
+
+
