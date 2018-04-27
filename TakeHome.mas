@@ -1,0 +1,20 @@
+// Steven Reeves
+// Take home program
+// CST 131
+
+loop,	JnS Mod_and_Divide
+		load i
+		subt ONE
+		store i
+		skipcond 000
+		jumpI loop
+
+x,		dec 0
+y,		dec 0
+i,		dec 10
+ONE,	dec 1
+
+Mod_and_Divide, dec 0
+		load x
+		output
+		jumpI Mod_and_Divide
