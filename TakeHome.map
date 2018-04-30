@@ -1,0 +1,19 @@
+ --------------------
+ Symbol    | Location
+ ----------+---------
+ Div       |   028
+ Mod       |   01A
+ ONE       |   016
+ XTimesTen |   03C
+ i         |   015
+ loop      |   003
+ loop1     |   01F
+ loop2     |   02D
+ loopend   |   027
+ loopend2  |   03B
+ prod      |   019
+ quot      |   017
+ rem       |   018
+ x         |   013
+ y         |   014
+

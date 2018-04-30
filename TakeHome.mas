@@ -1,20 +1,83 @@
 // Steven Reeves
 // Take home program
 // CST 131
+//	Output: 12345679012
+//	100/81 = 1.2345679012
 
-loop,	JnS Mod_and_Divide
+		JnS Div			// quot = x/y
+		load quot
+		output
+loop,	CLEAR			// clear out rem and quot
+		store rem
+		store quot
+		JnS Mod			// x%y
+		load rem			
+		store x			// x= x%y		
+		JnS XTimesTen	// x = x * 10
+		JnS Div			// quot = x/y
+		load quot
+		output
 		load i
 		subt ONE
 		store i
-		skipcond 000
-		jumpI loop
-
-x,		dec 0
-y,		dec 0
+		skipcond 400
+		jump loop
+		halt
+		
+x,		dec 100
+y,		dec 81
 i,		dec 10
 ONE,	dec 1
+quot,	dec 0
+rem,	dec 0
+prod,	dec 0
 
-Mod_and_Divide, dec 0
+Mod, hex 0
 		load x
-		output
-		jumpI Mod_and_Divide
+		store rem
+		skipcond 800	// if rem = 0, stop 
+		jump loopend
+loop1,	load rem			// Do things here
+		subt y
+		store rem
+		skipcond 000		// if remainder is < 0, stop
+		jump loop1
+		load rem
+		add y
+		store rem
+loopend,		jumpI Mod
+
+Div,	hex 0			// Store return address here
+		load x
+		store rem
+		skipcond 800	// if rem = 0, stop 
+		jump loopend2
+loop2,	load quot
+		add ONE
+		store quot
+		load rem			// Do things here
+		subt y
+		store rem
+		skipcond 000		// if remainder is < 0, stop
+		jump loop2
+		load quot
+		subt ONE
+		store quot
+		load rem
+		add y
+		store rem
+loopend2,	jumpI Div			// Go back
+
+XTimesTen, hex 0
+		load x
+		add x
+		add x
+		add x
+		add x
+		add x		
+		add x		
+		add x
+		add x
+		add x
+		store x
+		jumpi XTimesTen

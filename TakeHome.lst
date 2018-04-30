@@ -1,0 +1,113 @@
+     Assembly listing for: TakeHome.mas
+                Assembled: Sun Apr 29 16:43:20 PDT 2018
+
+         |                                // Steven Reeves
+         |                                // Take home program
+         |                                // CST 131
+         |                                
+000 0028 |            JNS Div             // quot = x/y
+001 1017 |            LOAD quot            
+002 6000 |            OUTPUT               
+003 A000 |  loop      CLEAR               // clear out rem and quot
+004 2018 |            STORE rem            
+005 2017 |            STORE quot           
+006 001A |            JNS Mod             // x%y
+007 1018 |            LOAD rem             
+008 2013 |            STORE x             // x= x%y		
+009 003C |            JNS XTimesTen       // x = x * 10
+00A 0028 |            JNS Div             // quot = x/y
+00B 1017 |            LOAD quot            
+00C 6000 |            OUTPUT               
+00D 1015 |            LOAD i               
+00E 4016 |            SUBT ONE             
+00F 2015 |            STORE i              
+010 8400 |            SKIPCOND 400         
+011 9003 |            JUMP loop            
+012 7000 |            HALT                 
+         |                                		
+013 0064 |  x         DEC 100              
+014 0051 |  y         DEC 81               
+015 000A |  i         DEC 10               
+016 0001 |  ONE       DEC 1                
+017 0000 |  quot      DEC 0                
+018 0000 |  rem       DEC 0                
+019 0000 |  prod      DEC 0                
+         |                                
+01A 0000 |  Mod       HEX 0                
+01B 1013 |            LOAD x               
+01C 2018 |            STORE rem            
+01D 8800 |            SKIPCOND 800        // if rem = 0, stop 
+01E 9027 |            JUMP loopend         
+01F 1018 |  loop1     LOAD rem            // Do things here
+020 4014 |            SUBT y               
+021 2018 |            STORE rem            
+022 8000 |            SKIPCOND 000        // if remainder is < 0, stop
+023 901F |            JUMP loop1           
+024 1018 |            LOAD rem             
+025 3014 |            ADD y                
+026 2018 |            STORE rem            
+027 C01A |  loopend   JUMPI Mod            
+         |                                
+028 0000 |  Div       HEX 0               // Store return address here
+029 1013 |            LOAD x               
+02A 2018 |            STORE rem            
+02B 8800 |            SKIPCOND 800        // if rem = 0, stop 
+02C 903B |            JUMP loopend2        
+02D 1017 |  loop2     LOAD quot            
+02E 3016 |            ADD ONE              
+02F 2017 |            STORE quot           
+030 1018 |            LOAD rem            // Do things here
+031 4014 |            SUBT y               
+032 2018 |            STORE rem            
+033 8000 |            SKIPCOND 000        // if remainder is < 0, stop
+034 902D |            JUMP loop2           
+035 1017 |            LOAD quot            
+036 4016 |            SUBT ONE             
+037 2017 |            STORE quot           
+038 1018 |            LOAD rem             
+039 3014 |            ADD y                
+03A 2018 |            STORE rem            
+03B C028 |  loopend2  JUMPI Div           // Go back
+         |                                
+03C 0000 |  XTimesTen HEX 0                
+03D 1013 |            LOAD x               
+03E 3013 |            ADD x                
+03F 3013 |            ADD x                
+040 3013 |            ADD x                
+041 3013 |            ADD x                
+042 3013 |            ADD x                
+043 3013 |            ADD x                
+044 3013 |            ADD x                
+045 3013 |            ADD x                
+046 3013 |            ADD x                
+047 2013 |            STORE x              
+048 C03C |            JUMPI XTimesTen      
+
+Assembly successful.
+
+         SYMBOL TABLE
+         -----------------------------------------------------
+          Symbol    | Defined | References 
+         -----------+---------+-------------------------------
+          Div       |   028   | 000, 00A, 03B
+          Mod       |   01A   | 006, 027
+          ONE       |   016   | 00E, 02E, 036
+          XTimesTen |   03C   | 009, 048
+          i         |   015   | 00D, 00F
+          loop      |   003   | 011
+          loop1     |   01F   | 023
+          loop2     |   02D   | 034
+          loopend   |   027   | 01E
+          loopend2  |   03B   | 02C
+          prod      |   019   | 
+          quot      |   017   | 001, 005, 00B, 02D, 02F, 035, 
+                    |         | 037
+          rem       |   018   | 004, 007, 01C, 01F, 021, 024, 
+                    |         | 026, 02A, 030, 032, 038, 03A
+          x         |   013   | 008, 01B, 029, 03D, 03E, 03F, 
+                    |         | 040, 041, 042, 043, 044, 045, 
+                    |         | 046, 047
+          y         |   014   | 020, 025, 031, 039
+         -----------------------------------------------------
+
+
