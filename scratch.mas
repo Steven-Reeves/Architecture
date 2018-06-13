@@ -3,16 +3,32 @@
 
 		input x
 		store x
-		input y 
+		input b 
+		store b
+loop,	load b		
+		skipcond 800	//if b 0, skip to end
+		jump loopend
+		load answer
 		store y
-		JnS mult
-		load result
+		JnS mult		//x * answer = M_result
+		load M_result
+		store answer
+		load M_result
+		clear
+		store M_result
+		load b
+		subt ONE
+		store b
+		jump loop
+loopend, load answer
 		output
 		halt
 	
 x,		dec 0
 y,		dec 0
-result,	dec 0
+b,		dec 0
+M_result,	dec 0
+answer, dec 1
 temp,	dec 0
 ONE, 	dec 1		
 mult,	hex 0			// Store return address here
@@ -20,9 +36,9 @@ mult,	hex 0			// Store return address here
 		store temp
 		skipcond 800	// if temp = 0, stop 
 		jump loop1end
-loop1,	load prod		// Do things here
+loop1,	load M_result		// Do things here
 		add x
-		store prod
+		store M_result
 		load temp
 		subt ONE
 		store temp

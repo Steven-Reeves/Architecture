@@ -1,0 +1,72 @@
+     Assembly listing for: scratch.mas
+                Assembled: Tue Jun 12 17:46:42 PDT 2018
+
+         |                              // Steven Reeves
+         |                              // Scratch stuff
+         |                              
+000 5000 |           INPUT               
+001 2016 |           STORE x             
+002 5000 |           INPUT               
+003 2018 |           STORE b             
+004 1018 |  loop     LOAD b              
+005 8800 |           SKIPCOND 800       //if b 0, skip to end
+006 9013 |           JUMP loopend        
+007 101A |           LOAD answer         
+008 2017 |           STORE y             
+009 001D |           JNS mult           //x * answer = M_result
+00A 1019 |           LOAD M_result       
+00B 201A |           STORE answer        
+00C 1019 |           LOAD M_result       
+00D A000 |           CLEAR               
+00E 2019 |           STORE M_result      
+00F 1018 |           LOAD b              
+010 401C |           SUBT ONE            
+011 2018 |           STORE b             
+012 9004 |           JUMP loop           
+013 101A |  loopend  LOAD answer         
+014 6000 |           OUTPUT              
+015 7000 |           HALT                
+         |                              	
+016 0000 |  x        DEC 0               
+017 0000 |  y        DEC 0               
+018 0000 |  b        DEC 0               
+019 0000 |  M_result DEC 0               
+01A 0001 |  answer   DEC 1               
+01B 0000 |  temp     DEC 0               
+01C 0001 |  ONE      DEC 1               
+01D 0000 |  mult     HEX 0              // Store return address here
+01E 1017 |           LOAD y              
+01F 201B |           STORE temp          
+020 8800 |           SKIPCOND 800       // if temp = 0, stop 
+021 902A |           JUMP loop1end       
+022 1019 |  loop1    LOAD M_result      // Do things here
+023 3016 |           ADD x               
+024 2019 |           STORE M_result      
+025 101B |           LOAD temp           
+026 401C |           SUBT ONE            
+027 201B |           STORE temp          
+028 8400 |           SKIPCOND 400       // if temp = 0, stop 
+029 9022 |           JUMP loop1          
+02A C01D |  loop1end JUMPI mult         // Go back
+
+Assembly successful.
+
+         SYMBOL TABLE
+         ----------------------------------------------------
+          Symbol   | Defined | References 
+         ----------+---------+-------------------------------
+          M_result |   019   | 00A, 00C, 00E, 022, 024
+          ONE      |   01C   | 010, 026
+          answer   |   01A   | 007, 00B, 013
+          b        |   018   | 003, 004, 00F, 011
+          loop     |   004   | 012
+          loop1    |   022   | 029
+          loop1end |   02A   | 021
+          loopend  |   013   | 006
+          mult     |   01D   | 009, 02A
+          temp     |   01B   | 01F, 025, 027
+          x        |   016   | 001, 023
+          y        |   017   | 008, 01E
+         ----------------------------------------------------
+
+

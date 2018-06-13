@@ -1,0 +1,16 @@
+ -------------------
+ Symbol   | Location
+ ---------+---------
+ M_result |   019
+ ONE      |   01C
+ answer   |   01A
+ b        |   018
+ loop     |   004
+ loop1    |   022
+ loop1end |   02A
+ loopend  |   013
+ mult     |   01D
+ temp     |   01B
+ x        |   016
+ y        |   017
+
